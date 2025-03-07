@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dulce Tentación</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Raleway:wght@400;700&display=swap">
+    <meta name="description" content="Dulce Tentación - Tu lugar para las mejores golosinas y repostería. Descubre nuestras ofertas especiales y productos al por mayor.">
+    <meta name="keywords" content="Dulce Tentación, golosinas, repostería, ofertas especiales, ventas al por mayor">
+    <meta name="author" content="Dulce Tentación">
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f3fc;
+            color: #444;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: url('https://th.bing.com/th/id/OIG2.oqWWPkwRlIWz0OXSpUCl?pid=ImgGn') no-repeat center;
+            background-size: cover;
+            color: white;
+            padding: 60px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            margin-left: 20px;
+            height: 120px;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: 'Raleway', sans-serif;
+            font-size: 3em;
+            letter-spacing: 3px;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #e0c3fc;
+            padding: 20px 0;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a,
+        nav .collapsible {
+            margin: 5px 10px;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: #b19cd9;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        nav a:hover,
+        nav .collapsible:hover {
+            background-color: #d4a5a5;
+        }
+
+        .container {
+            text-align: center;
+            margin: 50px auto;
+            width: 85%;
+        }
+
+        .cart {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            z-index: 1000;
+        }
+
+        .cart h3 {
+            margin: 0 0 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .cart-item {
+            margin: 15px 0;
+            font-size: 0.9em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item input {
+            width: 50px;
+            text-align: center;
+        }
+
+        .cart-item button {
+            background-color: #b19cd9;
+            border: none;
+            color: white;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .cart-total {
+            margin-top: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .cart button {
+            background-color: #e0c3fc;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+
+        .product {
+            background-color: #fff;
+            width: 30%;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+           
+        }
+
+        .product h2,
+        .product h3 {
+            font-size: 1.8em;
+            margin: 10px 0;
+            color: #b19cd9;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .product p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .product button {
+            background-color: #e0c3fc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .product button:hover {
+            background-color: #d4a5a5;
+        }
+
+        .product-price {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .checkout-form {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .checkout-form input,
+        .checkout-form select {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .checkout-form button {
+            background-color: #e0c3fc;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .checkout-form button:hover {
+            background-color: #d4a5a5;
+        }
+
+        .notice {
+            background-color: #f8f8f8;
+            color: #444;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .product-filters {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .product-filters input,
+        .product-filters select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+
+        .highlight {
+            background-color: #ffff99;
+        }
+
+        .review-section {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .review-form {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .review-form input,
+        .review-form textarea,
+        .review-form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .review-form button {
+            background-color: #e0c3fc;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .review-form button:hover {
+            background-color: #d4a5a5;
+        }
+
+        .review-form button.ready-to-submit {
+            background-color: #a19cd9;
+        }
+
+        .reviews {
+            margin-top: 20px;
+        }
+
+        .review-item {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .review-item h4 {
+            margin: 0 0 10px;
+        }
+
+        .review-item p {
+            margin: 0;
+        }
+
+        .review-item .rating {
+            color: #ffcc00;
+            font-size: 1.2em;
+        }
+
+        .no-reviews {
+            text-align: center;
+            font-size: 1.2em;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        .special-offers {
+            background-color: #ffeeee;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .special-offers h2 {
+            color: #b19cd9;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .special-offers .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+
+        .special-offer {
+            background-color: #fff;
+            width: 30%;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .special-offer:hover {
+            transform: scale(1.05);
+        }
+
+        .special-offer img {
+            width: 100%;
+            height: auto;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            
+        }
+
+        .special-offer h3 {
+            font-size: 2em;
+            color: #b19cd9;
+        }
+
+        .special-offer p {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .special-offer p.old-price {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .special-offer button {
+            background-color: #b19cd9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .special-offer button:hover {
+            background-color: #d4a5a5;
+        }
+
+        .wholesale-section {
+            background-color: #f0fff0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            text-align: center;
+            display: none;
+        }
+
+        .wholesale-section h2 {
+            color: #b19cd9;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .wholesale-section .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+
+        .wholesale-product {
+            background-color: #fff;
+            width: 30%;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .wholesale-product:hover {
+            transform: scale(1.05);
+        }
+
+        .wholesale-product img {
+            width: 100%;
+            height: auto;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        
+        }
+
+        .wholesale-product h3 {
+            font-size: 2em;
+            color: #b19cd9;
+        }
+
+        .wholesale-product p {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .wholesale-product button {
+            background-color: #b19cd9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .wholesale-product button:hover {
+            background-color: #d4a5a5;
+        }
+
+        .collapsible {
+            background-color: #e0c3fc;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.5em;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .active,
+        .collapsible:hover {
+            background-color: #d4a5a5;
+        }
+
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .popup-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+        }
+
+        .popup-message.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="https://th.bing.com/th/id/OIG2.uJIIIHZa.13QXhSSUzjJ?pid=ImgGn" alt="Logo">
+        <h1>Lúa</h1>
+    </header>
+
+    <nav>
+        <a href="#Reposteria">Repostería</a>
+        <a href="#desayunos">Desayunos</a>
+        <a href="#Explosiondesabores">Explosión de sabores</a>
+        <a href="#Anchetas">Anchetas</a>
+        <a href="#Galletas">Galletas</a>
+        <a href="#EdicionEspecial">Edición Especial</a>
+        <a href="#SaladosTentadores">Salados Tentadores</a>
+        <a href="#contacto">Contacto</a>
+        <button class="collapsible">Ventas al por mayor</button>
+    </nav>
+
+    <!-- Carrito -->
+    <div class="cart">
+        <h3>Carrito de Compras</h3>
+        <div id="cart-items">
+            <!-- Aquí se agregarán los artículos del carrito -->
+        </div>
+        <p class="cart-total">Total: $<span id="total">0.00</span></p>
+        <button onclick="scrollToCheckoutForm()">Proceder al Pago</button>
+    </div>
+
+    <div class="popup-message" id="popup-message">Producto agregado al carrito</div>
+
+    <!-- Avisos sobre el método de pago -->
+    <div class="notice">
+        <p><strong>Importante:</strong> Para realizar el pago por <strong>Nequi</strong>, debe transferir el valor total al número <strong>3045996792</strong>. En el formulario, por favor ingrese el número de Nequi desde el cual realizará el pago para poder corroborar el envío.</p>
+        <p>Una vez confirmado el pago, le enviaremos un mensaje al número de teléfono proporcionado para confirmar los detalles de entrega de su pedido.</p>
+    </div>
+
+    <!-- Formulario de checkout -->
+    <form id="checkout-form" class="checkout-form" action="https://formspree.io/f/xeooylko" method="POST">
+        <h3>Ingrese sus datos</h3>
+        <input type="text" name="name" id="name" placeholder="Nombre completo" required>
+        <input type="text" name="phone" id="phone" placeholder="Número de teléfono" required>
+
+        <label for="payment-method">Método de pago:</label>
+        <select id="payment-method" name="payment-method" required>
+            <option value="">Seleccione una opción</option>
+            <option value="Nequi">Nequi</option>
+            <option value="Efectivo">Pago en efectivo</option>
+        </select>
+
+        <div id="nequi-section" style="display:none;">
+            <input type="text" name="nequi-phone" id="nequi-phone" placeholder="Ingrese su número de Nequi">
+        </div>
+
+        <!-- Campo oculto para enviar los productos del carrito -->
+        <input type="hidden" name="cart-data" id="cart-data">
+        <button type="submit">Enviar Pedido</button>
+    </form>
+
+    <!-- Filtros de productos -->
+    <div class="product-filters">
+        <input type="text" id="search-bar" placeholder="Buscar productos o categorías..." />
+        <select id="category-filter">
+            <option value="all">Todas las Categorías</option>
+            <option value="reposteria">Repostería</option>
+            <option value="desayunos">Desayunos</option>
+            <option value="explosiondesabores">Explosión de sabores</option>
+            <option value="anchetas">Anchetas</option>
+            <option value="galletas">Galletas</option>
+            <option value="edicionespecial">Edición Especial</option>
+            <option value="saladostentadores">Salados Tentadores</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <!-- Sección Ofertas Especiales -->
+        <section id="special-offers" class="special-offers">
+            <h2>Ofertas Especiales</h2>
+            <div class="products" id="special-offers-list">
+                <!-- Aquí se agregarán las ofertas especiales -->
+            </div>
+        </section>
+
+        <!-- Sección Repostería -->
+        <section id="Reposteria" class="section">
+            <h2>Repostería</h2>
+            <div class="products">
+                <div class="product" id="Cupcakes">
+                    <img src="https://i.pinimg.com/736x/a7/3e/32/a73e32232cfcf74cfd3760218648e1e8.jpg" alt="Cupcakes" loading="lazy">
+                    <div class="producto">
+                        <h2 style="font-size: 2em;">Cupcakes</h2>
+                        <p style="font-size: 1.2em;">Cupcakes de ensueño: Caja con 1 cupcake blanco de chocolate con blueberries.</p>
+                        <p class="product-price">$8.000</p>
+                        <button onclick="addToCart('Cupcakes', 8000)">Agregar al Carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Brownies">
+                    <img src="https://i.pinimg.com/736x/bd/08/cb/bd08cb257938efde823458636f1cf6a2.jpg" alt="Brownies" loading="lazy">
+                    <div class="producto">
+                        <h2 style="font-size: 2em;">Brownies</h2>
+                        <p style="font-size: 1.2em;">Pura tentación en cada trozo: la cajita contiene tres deliciosos brownies.</p>
+                        <p class="product-price">$27.000</p>
+                        <button onclick="addToCart('Brownies', 27000)">Agregar al Carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Vaso-de-Fresas-con-Crema">
+                    <img src="https://i.pinimg.com/736x/8c/df/73/8cdf738210b2f9b83adcfbd73cdb3d03.jpg" alt="Vaso de Fresas con Crema" loading="lazy">
+                    <div class="producto">
+                        <h2 style="font-size: 2em;">Vaso de Fresas con Crema</h2>
+                        <p style="font-size: 1.2em;">Fresas frescas cubiertas con crema.</p>
+                        <p class="product-price">$28.000</p>
+                        <button onclick="addToCart('Vaso de Fresas con Crema', 28000)">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Desayunos -->
+        <section id="desayunos" class="section">
+            <h2>Desayunos</h2>
+            <div class="products">
+                <div class="product" id="Desayuno-Clasico">
+                    <img src="https://i.pinimg.com/736x/55/df/85/55df85cc63da9c0e310818d5b6c6f39a.jpg" alt="Desayuno Clásico" loading="lazy">
+                    <div class="producto">
+                        <h2 style="font-size: 2em;">Desayuno Clásico</h2>
+                        <p style="font-size: 1.2em;">Sencillo, delicioso y perfecto para comenzar el día. Huevos revueltos, tostadas crujientes, jamón o tocino, acompañado de un jugo de naranja fresco o café caliente.</p>
+                        <p class="product-price">$32.000</p>
+                        <button onclick="addToCart('Desayuno Clásico', 32000)">Agregar al carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Desayuno-Saludable">
+                    <img src="https://i.pinimg.com/736x/fe/70/2d/fe702d413763b4223770d7c87190d306.jpg" alt="Desayuno Saludable" loading="lazy">
+                    <div class="producto">
+                        <h2 style="font-size: 2em;">Desayuno Saludable</h2>
+                        <p style="font-size: 1.2em;">Energía y frescura en cada bocado. Yogur griego con granola, frutos secos y fruta fresca, acompañado de tostadas de aguacate. ¡Perfecto para empezar el día de forma ligera y deliciosa!</p>
+                        <p class="product-price">$114.000</p>
+                        <button onclick="addToCart('Desayuno Saludable', 114000)">Agregar al carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Desayuno-Gourmet">
+                    <img src="https://i.pinimg.com/736x/21/2c/ce/212cce0cce543976256368ceae4cf1a2.jpg" alt="Desayuno Gourmet" loading="lazy">
+                    <div class="producto">
+                        <h2 style="font-size: 2em;">Desayuno Gourmet</h2>
+                        <p style="font-size: 1.2em;">Un festín para los sentidos, ideal para los más exigentes. Croissant relleno de jamón y queso, omelette de queso, acompañado de salmón ahumado y un jugo de frutas exóticas.</p>
+                        <p class="product-price">$44.800</p>
+                        <button onclick="addToCart('Desayuno Gourmet', 44800)">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Explosión de sabores -->
+        <section id="Explosiondesabores" class="section">
+            <h2 style="color: #b19cd9; font-size: 2.5em;">Explosión de sabores</h2>
+            <div class="products">
+                <div class="product" id="Caja-mini">
+                    <img src="https://i.pinimg.com/736x/82/9d/a2/829da23ab4a6aa316ee45e0ac7cba6e8.jpg" alt="Caja mini" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Caja mini</h3>
+                        <p style="font-size: 1.2em; color: #333;">¡Un pequeño placer que lo tiene todo! Nuestra caja mini de gomas está llena de sabores explosivos en cada bocado. Perfecta para un antojo rápido o un detalle dulce.</p>
+                        <p class="product-price">$60.000</p>
+                        <button onclick="addToCart('Caja mini', 60000)">Agregar al carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Caja-mediana">
+                    <img src="https://i.pinimg.com/736x/f6/ea/e1/f6eae1c20976cd140314c7b2dbf625e2.jpg" alt="Caja mediana" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Caja mediana</h3>
+                        <p style="font-size: 1.2em; color: #333;">Doble la diversión con nuestra caja mediana de gomas. Una selección irresistible de colores y sabores que hará sonreír a cualquiera. Ideal para compartir... o disfrutar por completo.</p>
+                        <p class="product-price">$70.000</p>
+                        <button onclick="addToCart('Caja mediana', 70000)">Agregar al carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Ramo-de-gomitas">
+                    <img src="https://i.pinimg.com/736x/33/85/ec/3385ecd6e27f05f47852066507937005.jpg" alt="Ramo de gomitas" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Ramo de gomitas</h3>
+                        <p style="font-size: 1.2em; color: #333;">¡Sorprende con un ramo que no solo se ve bien, sino que sabe aún mejor! Este bouquet de gomas es un regalo original, lleno de color y sabor, perfecto para endulzar cualquier ocasión especial.</p>
+                        <p class="product-price">$124.000</p>
+                        <button onclick="addToCart('Ramo de gomitas', 124000)">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Anchetas -->
+        <section id="Anchetas" class="section">
+            <h2 style="color: #b19cd9; font-size: 2.5em;">Anchetas</h2>
+            <div class="products">
+                <div class="product" id="Ancheta-gourmet">
+                    <img src="https://i.pinimg.com/736x/87/d4/57/87d457db252080103081a6bc44443331.jpg" alt="Ancheta gourmet" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Ancheta gourmet</h3>
+                        <p style="font-size: 1.2em; color: #333;">Exquisita selección de delicias finas que elevarán cualquier celebración. Vinos, chocolates premium y más, ¡el lujo al alcance de tus sentidos!</p>
+                        <p class="product-price">$65.400</p>
+                        <button onclick="addToCart('Ancheta gourmet', 65400)">Agregar al carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Ancheta-tematica">
+                    <img src="https://i.pinimg.com/736x/a2/81/92/a281927f982d6014002ffd6302544cc3.jpg" alt="Ancheta temática" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Ancheta temática</h3>
+                        <p style="font-size: 1.2em; color: #333;">Cestas cargadas de emoción y detalles personalizados para cada ocasión. ¡Cumpleaños, Navidad o cualquier momento especial, perfecto para sorprender!</p>
+                        <p class="product-price">$74.000</p>
+                        <button onclick="addToCart('Ancheta temática', 74000)">Agregar al carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Ancheta-saludable">
+                    <img src="https://i.pinimg.com/736x/e3/c6/47/e3c647ec7bd1d606e0b8761e4fdbaa1a.jpg" alt="Ancheta saludable" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Ancheta saludable</h3>
+                        <p style="font-size: 1.2em; color: #333;">Un regalo lleno de bienestar: frutas frescas, snacks saludables y sabores naturales para consentir con opciones deliciosas y nutritivas.</p>
+                        <p class="product-price">$70.400</p>
+                        <button onclick="addToCart('Ancheta saludable', 70400)">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Galletas -->
+        <section id="Galletas" class="section">
+            <h2 style="color: #b19cd9; font-size: 2.5em;">Galletas</h2>
+            <div class="products">
+                <div class="product" id="Galletas-Rellenas">
+                    <img src="https://i.pinimg.com/736x/f5/06/74/f50674aa10dc5210dfc5667947145627.jpg" alt="Galletas Rellenas" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Galletas Rellenas</h3>
+                        <p style="font-size: 1.2em; color: #333;">Una explosión de sabor en cada bocado. Una cajita con tres galletas rellenas de chocolate y con chips de chocolate.</p>
+                        <p class="product-price">$16.500</p>
+                        <button onclick="addToCart('Galletas Rellenas', 16500)">Agregar al carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Galletas-Decoradas">
+                    <img src="https://i.pinimg.com/736x/e1/b7/d3/e1b7d3601f6c1e3da9b5bd6e40b3dde5.jpg" alt="Galletas Decoradas" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Galletas Decoradas</h3>
+                        <p style="font-size: 1.2em; color: #333;">Arte comestible para tus celebraciones. Doce galletas con decoración de corazón.</p>
+                        <p class="product-price">$26.000</p>
+                        <button onclick="addToCart('Galletas Decoradas', 26000)">Agregar al carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Galletas-Crujientes">
+                    <img src="https://i.pinimg.com/736x/f8/ae/e0/f8aee0ab209ffd0a7233d786058b68af.jpg" alt="Galletas Crujientes" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Galletas Crujientes</h3>
+                        <p style="font-size: 1.2em; color: #333;">Crujiente, ligera y deliciosa. Caja con tres galletas crujientes con chips de chocolate.</p>
+                        <p class="product-price">$15.000</p>
+                        <button onclick="addToCart('Galletas Crujientes', 15000)">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Edición Especial -->
+        <section id="EdicionEspecial" class="section">
+            <h2 style="color: #b19cd9; font-size: 2.5em;">Edición Especial</h2>
+            <div class="products">
+                <div class="product" id="Brownie-oreo">
+                    <img src="https://i.pinimg.com/236x/b7/c1/47/b7c1470d7f9fa783e68d25cee6326a7f.jpg" alt="Brownie de oreo" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Brownie de oreo</h3>
+                        <p style="font-size: 1.2em; color: #333;">Déjate tentar con nuestra Caja Oreo Brownie: 3 irresistibles brownies cargados con la crujiente delicia de Oreo. ¡El equilibrio perfecto entre lo cremoso y lo crocante en cada mordida!</p>
+                        <p class="product-price">$13.000</p>
+                        <button onclick="addToCart('Brownie de oreo', 13000)">Agregar al carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Galletas-red-velvet">
+                    <img src="https://i.pinimg.com/236x/29/c3/4c/29c34ca7347df82d7e4236390b1619f7.jpg" alt="Galletas de red velvet" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Galletas de red velvet</h3>
+                        <p style="font-size: 1.2em; color: #333;">Disfruta nuestra Caja Red Velvet: 3 irresistibles galletas de red velvet, suaves y llenas de sabor con un toque de dulzura única. ¡Una experiencia gourmet en cada bocado!</p>
+                        <p class="product-price">$40.000</p>
+                        <button onclick="addToCart('Galletas de red velvet', 40000)">Agregar al carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Brokies">
+                    <img src="https://i.pinimg.com/236x/2f/2a/31/2f2a31e4efbc938f51d943037d831faf.jpg" alt="Brookies" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Brookies</h3>
+                        <p style="font-size: 1.2em; color: #333;">Descubre nuestra Caja Brookies: 3 deliciosas combinaciones de galleta y brownie en un solo bocado. ¡Lo mejor de ambos mundos para una explosiónde sabor única!</p>
+                        <p class="product-price">$27.000</p>
+                        <button onclick="addToCart('Brookies', 27000)">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Salados Tentadores -->
+        <section id="SaladosTentadores" class="section">
+            <h2 style="color: #b19cd9; font-size: 2.5em;">Salados Tentadores</h2>
+            <div class="products">
+                <div class="product" id="Canastas-de-platano">
+                    <img src="https://i.pinimg.com/236x/34/18/37/3418372a3891b6deac05a9400177cc26.jpg" alt="Canastas de plátano" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Canastas de plátano</h3>
+                        <p style="font-size: 1.2em; color: #333;">Disfruta nuestra Caja Tentación: 5 irresistibles canastas de plátano crocante, rellenas de maicitos, salchicha, queso mozzarella fundido y un toque cremoso de leche. ¡Perfectas para compartir o darte un gusto único!</p>
+                        <p class="product-price">$24.500</p>
+                        <button onclick="addToCart('Canastas de plátano', 24500)">Agregar al carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Bolas-de-papa-crujientes">
+                    <img src="https://i.pinimg.com/736x/52/98/bc/5298bc5aa949ab2df398249e1567229e.jpg" alt="Bolas de papa crujientes" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Bolas de papa crujientes</h3>
+                        <p style="font-size: 1.2em; color: #333;">Deléitate con nuestra Caja Crujiente: 4 irresistibles bolas de papa doradas y crocantes por fuera, suaves y deliciosas por dentro. ¡El snack perfecto para cada ocasión!</p>
+                        <p class="product-price">$19.500</p>
+                        <button onclick="addToCart('Bolas de papa crujientes', 19500)">Agregar al carrito</button>
+                    </div>
+                </div>
+                <div class="product" id="Corn-dogs">
+                    <img src="https://i.pinimg.com/736x/a9/96/08/a996082560252c561a5e75b11bc21b70.jpg" alt="Corn dogs" loading="lazy">
+                    <div class="producto">
+                        <h3 style="font-size: 2em; color: #b19cd9;">Corn dogs</h3>
+                        <p style="font-size: 1.2em; color: #333;">Prueba nuestra Cajita Koreana: 2 irresistibles corn dogs coreanos, cubiertos con papas crujientes, rellenos de salchicha y queso fundido. ¡Explosión de sabor en cada bocado!</p>
+                        <p class="product-price">$25.000</p>
+                        <button onclick="addToCart('Corn dogs', 25000)">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Ventas al por mayor -->
+        <section id="wholesale" class="wholesale-section">
+            <h2>Ventas al por mayor</h2>
+            <div class="products">
+                <div class="wholesale-product" id="Product1">
+                    <img src="https://i.pinimg.com/474x/c0/a5/9f/c0a59ff1c0cefc000abbc24dc9241ac5.jpg" alt="Producto 1" loading="lazy">
+                    <h3>Producto 1</h3>
+                    <p>Caja de 10 cupcakes: 5 de blueberries y 5 de vainilla. Esponjosos, con glaseado delicado y decoración según el sabor. Perfecta para reventa o eventos, asegurando frescura y calidad.</p>
+                    <button onclick="addToCart('Cupcakes', 60000)">Agregar al Carrito</button>
+                </div>
+                <div class="wholesale-product" id="Product2">
+                    <img src="https://i.pinimg.com/236x/df/8c/e6/df8ce6747295622dedf68ec62c869544.jpg" alt="Producto 2" loading="lazy">
+                    <h3>Producto 2</h3>
+                    <p>Caja de 10 brownies: chocolates intensos, suaves y esponjosos. Ideales para reventa o eventos, garantizando frescura y sabor premium.</p>
+                    <button onclick="addToCart('Brownies', 65000)">Agregar al Carrito</button>
+                </div>
+                <div class="wholesale-product" id="Product3">
+                    <img src="https://i.pinimg.com/236x/9d/64/97/9d6497891adcf156629a3cef9092ffb6.jpg" alt="Producto 3" loading="lazy">
+                    <h3>Galletas rellenas</h3>
+                    <p>Caja de 10 galletas rellenas de chocolate: crujientes por fuera y con un centro cremoso de chocolate. Perfectas para negocios o eventos, con calidad garantizada.</p>
+                    <button onclick="addToCart('Galletas rellenas', 41000)">Agregar al Carrito</button>
+                </div>
+                <div class="wholesale-product" id="Product4">
+                    <img src="https://i.pinimg.com/736x/bd/f0/0f/bdf00fbef9df6c07a7c1b5d7ed334d93.jpg" alt="Producto 4" loading="lazy">
+                    <h3>Galletas crujientes</h3>
+                    <p>Caja de 10 galletas crujientes: deliciosamente doradas y crocantes. Ideales para negocios o eventos, listas para disfrutar en cualquier ocasión.</p>
+                    <button onclick="addToCart('Galletas crujientes', 37500)">Agregar al Carrito</button>
+                </div>
+                <div class="wholesale-product" id="Product5">
+                    <img src="https://i.pinimg.com/236x/ca/57/47/ca57471a1121df7b705f051103d7d76e.jpg" alt="Producto 5" loading="lazy">
+                    <h3>Galletas de red velvet</h3>
+                    <p>Caja de 10 galletas Red Velvet: suaves y con un toque de cacao, perfectas para agregar elegancia y sabor en negocios o eventos.</p>
+                    <button onclick="addToCart('Galletas de red velvet', 99000)">Agregar al Carrito</button>
+                </div>
+                <div class="wholesale-product" id="Product6">
+                    <img src="https://i.pinimg.com/236x/fa/07/b5/fa07b59b8baebab650c99549414dbd34.jpg" alt="Producto 6" loading="lazy">
+                    <h3>Brookies</h3>
+                    <p>Caja de 10 brookies: una deliciosa combinación de brownie y galleta en cada bocado, ideales para revender en negocios o para eventos especiales.</p>
+                    <button onclick="addToCart('Brookies', 65000)">Agregar al Carrito</button>
+                </div>
+                <div class="wholesale-product" id="Product7">
+                    <img src="https://i.pinimg.com/236x/7f/94/aa/7f94aa473463c11cf8604ecb26259c79.jpg" alt="Producto 7" loading="lazy">
+                    <h3>Corn dogs</h3>
+                    <p>Caja de 10 corn dogs: salchichas cubiertas de una masa crujiente, perfectas para eventos o para negocios que buscan ofrecer opciones rápidas y deliciosas.</p>
+                    <button onclick="addToCart('Corn dogs', 90000)">Agregar al Carrito</button>
+                </div>
+                <div class="wholesale-product" id="Product8">
+                    <img src="https://i.pinimg.com/236x/6b/5e/0a/6b5e0ae2a51c98cad19817c51ab1b76a.jpg" alt="Producto 8" loading="lazy">
+                    <h3>Brownies de oreo</h3>
+                    <p>Caja de 10 brownies de Oreo: suaves brownies de chocolate con una capa crujiente de galletas Oreo, ideales para eventos o negocios que buscan un toque extra de sabor.</p>
+                    <button onclick="addToCart('Brownies de oreo', 30000)">Agregar al Carrito</button>
+                </div>
+                <div class="wholesale-product" id="Product9">
+                    <img src="https://i.pinimg.com/236x/2f/91/ef/2f91ef99258e4830cdfa14b87506c8ca.jpg" alt="Producto 9" loading="lazy">
+                    <h3>Alfajores</h3>
+                    <p>Caja con 10 alfajores de maicena y 10 de chocolate: suaves y deliciosos alfajores, mitad rellenos de dulce de leche con una capa de maicena y mitad de chocolate, perfectos para eventos o ventas al por mayor.</p>
+                    <button onclick="addToCart('Alfajores', 36000)">Agregar al Carrito</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="contacto" class="section">
+            <h2>Contacto</h2>
+            <p>¿Tienes alguna duda o quieres hacer un pedido? Contáctanos y estaremos encantados de ayudarte.</p>
+        </section>
+
+        <!-- Sección de Reseñas -->
+        <section id="reviews" class="section review-section">
+            <h2>Reseñas de Productos</h2>
+            <div class="review-form">
+                <h3>Deja tu Reseña</h3>
+                <input type="text" id="reviewer-name" placeholder="Tu nombre" required>
+                <textarea id="review-text" placeholder="Escribe tu reseña aquí..." rows="4" minlength="10" maxlength="50" required></textarea>
+                <label for="review-rating">Calificación:</label>
+                <select id="review-rating" required>
+                    <option value="5">5 Estrellas</option>
+                    <option value="4">4 Estrellas</option>
+                    <option value="3">3 Estrellas</option>
+                    <option value="2">2 Estrellas</option>
+                    <option value="1">1 Estrella</option>
+                </select>
+                <button id="submit-review" onclick="submitReview()">Enviar Reseña</button>
+            </div>
+            <div class="reviews" id="reviews-list">
+                <!-- Aquí se agregarán las reseñas -->
+            </div>
+            <div class="no-reviews" id="no-reviews">No hay reseñas aún.</div>
+        </section>
+    </div>
+
+    <script>
+        // Product data
+        const products = [
+            { name: 'Cupcakes', category: 'reposteria', id: 'Cupcakes' },
+            { name: 'Brownies', category: 'reposteria', id: 'Brownies' },
+            { name: 'Vaso de Fresas con Crema', category: 'reposteria', id: 'Vaso-de-Fresas-con-Crema' },
+            { name: 'Desayuno Clásico', category: 'desayunos', id: 'Desayuno-Clasico' },
+            { name: 'Desayuno Saludable', category: 'desayunos', id: 'Desayuno-Saludable' },
+            { name: 'Desayuno Gourmet', category: 'desayunos', id: 'Desayuno-Gourmet' },
+            { name: 'Caja mini', category: 'explosiondesabores', id: 'Caja-mini' },
+            { name: 'Caja mediana', category: 'explosiondesabores', id: 'Caja-mediana' },
+            { name: 'Ramo de gomitas', category: 'explosiondesabores', id: 'Ramo-de-gomitas' },
+            { name: 'Ancheta gourmet', category: 'anchetas', id: 'Ancheta-gourmet' },
+            { name: 'Ancheta tematica', category: 'anchetas', id: 'Ancheta-tematica' },
+            { name: 'Ancheta saludable', category: 'anchetas', id: 'Ancheta-saludable' },
+            { name: 'Galletas Rellenas', category: 'galletas', id: 'Galletas-Rellenas' },
+            { name: 'Galletas Decoradas', category: 'galletas', id: 'Galletas-Decoradas' },
+            { name: 'Galletas Crujientes', category: 'galletas', id: 'Galletas-Crujientes' },
+            { name: 'Brownie de oreo', category: 'edicionespecial', id: 'Brownie-oreo' },
+            { name: 'Galletas de red velvet', category: 'edicionespecial', id: 'Galletas-red-velvet' },
+            { name: 'Brookies', category: 'edicionespecial', id: 'Brokies' },
+            { name: 'Canastas de plátano', category: 'saladostentadores', id: 'Canastas-de-platano' },
+            { name: 'Bolas de papa crujientes', category: 'saladostentadores', id: 'Bolas-de-papa-crujientes' },
+            { name: 'Corn dogs', category: 'saladostentadores', id: 'Corn-dogs' },
+            { name: 'Producto 1', category: 'wholesale', id: 'Product1' },
+            { name: 'Producto 2', category: 'wholesale', id: 'Product2' },
+            { name: 'Producto 3', category: 'wholesale', id: 'Product3' },
+            { name: 'Producto 4', category: 'wholesale', id: 'Product4' },
+            { name: 'Producto 5', category: 'wholesale', id: 'Product5' },
+            { name: 'Producto 6', category: 'wholesale', id: 'Product6' },
+            { name: 'Producto 7', category: 'wholesale', id: 'Product7' },
+            { name: 'Producto 8', category: 'wholesale', id: 'Product8' },
+            { name: 'Producto 9', category: 'wholesale', id: 'Product9' },
+            { name: 'Producto 10', category: 'wholesale', id: 'Product10' }
+        ];
+
+        // Special offers data (example)
+        const specialOffers = [
+            { id: 'Cupcakes', name: 'Cupcakes', oldPrice: 48000, newPrice: 38000, imageUrl: 'https://i.pinimg.com/736x/6b/5f/83/6b5f838fa1fac3125a979be2146d1edd.jpg', description: 'Disfruta nuestra Caja Dulce Mix: 3 esponjosos cupcakes de blueberries y 3 suaves cupcakes de vainilla, ¡una combinación perfecta de frescura y dulzura en cada mordida!' },
+            { id: 'Brownies', name: 'Brownies', oldPrice: 40000, newPrice: 35000, imageUrl: 'https://i.pinimg.com/736x/32/66/63/32666335181b204505dc3afe9235e617.jpg', description: 'Sumérgete en nuestra Caja Brownie Deluxe: 3 irresistibles brownies clásicos y 3 deliciosos brownies de Oreo, ¡la mezcla perfecta de chocolate intenso y galleta crujiente!' },
+            { id: 'Galletas-Rellenas', name: 'Alfajores', oldPrice: 25000, newPrice: 16000, imageUrl: 'https://i.pinimg.com/736x/c1/2a/37/c12a37ba3563430ef271383a632e7f49.jpg', description: 'Descubre nuestra Caja de Alfajores Premium: 3 suaves alfajores de maicena y 2 irresistibles de chocolate. ¡Cada bocado es una dulce explosión de sabor!' }
+        ];
+
+        // Scroll to product function
+        function scrollToProduct(productId) {
+            const productElement = document.getElementById(productId);
+            if (productElement) {
+                productElement.classList.add('highlight');
+                productElement.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => {
+                    productElement.classList.remove('highlight');
+                }, 2000);
+            } else {
+                alert('Producto no encontrado.');
+            }
+        }
+
+        // Filter products function
+        function filterProducts() {
+            const searchText = document.getElementById('search-bar').value.toLowerCase();
+            const category = document.getElementById('category-filter').value;
+
+            const filteredProducts = products.filter(product => {
+                const matchesCategory = category === 'all' || product.category === category;
+                const matchesSearch = product.name.toLowerCase().includes(searchText);
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filteredProducts.length > 0) {
+                scrollToProduct(filteredProducts[0].id);
+            } else {
+                alert('Producto no encontrado.');
+            }
+        }
+
+        // Initialize filters
+        document.getElementById('search-bar').addEventListener('input', filterProducts);
+        document.getElementById('category-filter').addEventListener('change', filterProducts);
+
+        // Shopping cart functionality
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        let total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+        function addToCart(product, price) {
+            const existingItemIndex = cartItems.findIndex(item => item.product === product);
+
+            if (existingItemIndex !== -1) {
+                // Si el producto ya está en el carrito, incrementa la cantidad
+                cartItems[existingItemIndex].quantity += 1;
+            } else {
+                // Si el producto no está en el carrito, agrégalo como un nuevo ítem
+                cartItems.push({ product: product, price: price, quantity: 1 });
+            }
+
+            total += price;
+            updateCartDisplay();
+            saveCartToLocalStorage();
+            showPopupMessage('Producto agregado al carrito');
+        }
+
+        // Show popup message function
+        function showPopupMessage(message) {
+            const popupMessage = document.getElementById('popup-message');
+            popupMessage.textContent = message;
+            popupMessage.classList.add('show');
+
+            setTimeout(() => {
+                popupMessage.classList.remove('show');
+            }, 3000);
+        }
+
+        // Update cart display function
+        function updateCartDisplay() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const totalDisplay = document.getElementById('total');
+            cartItemsContainer.innerHTML = '';
+
+            cartItems.forEach((item, index) => {
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <span>${item.product}</span>
+                    <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)">
+                    <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                    <button onclick="removeFromCart(${index})">Eliminar</button>
+                `;
+                cartItemsContainer.appendChild(cartItemElement);
+            });
+
+            totalDisplay.innerText = total.toFixed(2);
+        }
+
+        // Update quantity function
+        function updateQuantity(index, newQuantity) {
+            newQuantity = Math.max(newQuantity, 1);
+            const quantityDifference = newQuantity - cartItems[index].quantity;
+            cartItems[index].quantity = parseInt(newQuantity, 10);  // Ensure newQuantity is treated as an integer
+            total += cartItems[index].price * quantityDifference;
+            updateCartDisplay();
+            saveCartToLocalStorage();
+        }
+
+        // Remove from cart function
+        function removeFromCart(index) {
+            total -= cartItems[index].price * cartItems[index].quantity;
+            cartItems.splice(index, 1);
+            updateCartDisplay();
+            saveCartToLocalStorage();
+        }
+
+        // Save cart to localStorage function
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+
+        // Load cart from localStorage when the page is loaded
+        function loadCartFromLocalStorage() {
+            if (cartItems.length > 0) {
+                updateCartDisplay();
+            }
+        }
+
+        // Initialize cart on page load
+        document.addEventListener('DOMContentLoaded', loadCartFromLocalStorage);
+
+        // Scroll to checkout form function
+        function scrollToCheckoutForm() {
+            const checkoutForm = document.getElementById('checkout-form');
+            checkoutForm.style.display = 'block';
+            checkoutForm.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Handle form submission
+        document.getElementById('checkout-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const phone = document.getElementById('phone').value;
+            const paymentMethod = document.getElementById('payment-method').value;
+            const nequiPhone = document.getElementById('nequi-phone').value;
+            const cartDataField = document.getElementById('cart-data');
+            cartDataField.value = JSON.stringify(cartItems);
+// Display confirmation message
+if (paymentMethod === 'Nequi') {
+    alert(`Puedes realizar el pago al número 3045996792 desde el número ${nequiPhone}. En breve recibirás un mensaje a ${phone} confirmando tu pedido.\n\nLink directo a Nequi: https://www.nequi.com.co/`);
+} else {
+    alert(`En breve recibirás un mensaje a ${phone} confirmando tu pedido.`);
+}
+
+            // Submit the form data to Formspree
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('phone', phone);
+            formData.append('payment_method', paymentMethod);
+            formData.append('nequi_phone', nequiPhone);
+            formData.append('cart_data', JSON.stringify(cartItems));
+
+            fetch('https://formspree.io/f/xeooylko', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Error al enviar el formulario');
+                }
+            })
+            .then(data => {
+                alert('¡Formulario enviado con éxito! Tu pedido ha sido enviado, nos comunicaremos contigo prontamente.');
+                cartItems = [];
+                total = 0;
+                updateCartDisplay();
+                localStorage.removeItem('cartItems'); // Clear the cart in localStorage
+                document.getElementById('checkout-form').reset(); // Reset form fields
+                document.getElementById('checkout-form').style.display = 'none'; // Hide the form
+            })
+            .catch(error => {
+                console.error('Error al enviar el formulario:', error);
+                alert('Hubo un problema al enviar el formulario. Intenta nuevamente.');
+            });
+        });
+
+        // Review functionality
+        function submitReview() {
+            const reviewerName = document.getElementById('reviewer-name').value;
+            const reviewText = document.getElementById('review-text').value;
+            const reviewRating = document.getElementById('review-rating').value;
+
+            if (reviewerName && reviewText.length >= 10 && reviewText.length <= 50 && reviewRating) {
+                const reviewItem = document.createElement('div');
+                reviewItem.className = 'review-item';
+                reviewItem.innerHTML = `
+                    <h4>${reviewerName}</h4>
+                    <div class="rating">${'★'.repeat(reviewRating)}${'☆'.repeat(5 - reviewRating)}</div>
+                    <p>${reviewText}</p>
+                `;
+
+                document.getElementById('reviews-list').appendChild(reviewItem);
+
+                // Save to local storage
+                let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+                reviews.push({ name: reviewerName, rating: reviewRating, text: reviewText });
+                localStorage.setItem('reviews', JSON.stringify(reviews));
+
+                // Clear the form
+                document.getElementById('reviewer-name').value = '';
+                document.getElementById('review-text').value = '';
+                document.getElementById('review-rating').value = '5';
+
+                // Hide "no reviews" message if it exists
+                document.getElementById('no-reviews').style.display = 'none';
+
+                alert('¡Gracias por tu reseña!');
+            } else {
+                alert('Por favor, completa todos los campos y asegúrate de que la reseña tenga entre 10 y 50 caracteres.');
+            }
+        }
+
+        // Load reviews from local storage
+        function loadReviews() {
+            const reviewsList = document.getElementById('reviews-list');
+            const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+            if (reviews.length > 0) {
+                document.getElementById('no-reviews').style.display = 'none';
+                reviews.forEach(review => {
+                    const reviewItem = document.createElement('div');
+                    reviewItem.className = 'review-item';
+                    reviewItem.innerHTML = `
+                        <h4>${review.name}</h4>
+                        <div class="rating">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</div>
+                        <p>${review.text}</p>
+                    `;
+                    reviewsList.appendChild(reviewItem);
+                });
+            }
+        }
+
+        // Initialize reviews on page load
+        document.addEventListener('DOMContentLoaded', loadReviews);
+
+        // Function to display special offers
+        function displaySpecialOffers() {
+            const specialOffersList = document.getElementById('special-offers-list');
+            specialOffersList.innerHTML = '';
+
+            specialOffers.forEach(offer => {
+                const offerElement = document.createElement('div');
+                offerElement.className = 'special-offer';
+                offerElement.innerHTML = `
+                    <img src="${offer.imageUrl}" alt="${offer.name}" loading="lazy">
+                    <h3>${offer.name}</h3>
+                    <p class="old-price">Precio anterior: $${offer.oldPrice.toFixed(2)}</p>
+                    <p>Precio especial: $${offer.newPrice.toFixed(2)}</p>
+                    <p>${offer.description}</p>
+                    <button onclick="addToCart('${offer.name}', ${offer.newPrice})">Agregar al Carrito</button>
+                `;
+                specialOffersList.appendChild(offerElement);
+            });
+        }
+
+        // Display special offers on page load
+        document.addEventListener('DOMContentLoaded', displaySpecialOffers);
+
+        // Collapsible section for wholesale products
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = document.getElementById("wholesale");
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                    content.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+
+        // Highlight submit review button when form is ready
+        document.querySelectorAll('.review-form input, .review-form textarea, .review-form select').forEach(input => {
+            input.addEventListener('input', () => {
+                const reviewerName = document.getElementById('reviewer-name').value;
+                const reviewText = document.getElementById('review-text').value;
+                const reviewRating = document.getElementById('review-rating').value;
+                const submitButton = document.getElementById('submit-review');
+
+                if (reviewerName && reviewText.length >= 10 && reviewText.length <= 50 && reviewRating) {
+                    submitButton.classList.add('ready-to-submit');
+                } else {
+                    submitButton.classList.remove('ready-to-submit');
+                }
+            });
+        });
+    </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/67bcc190924994190cdb63a0/1iksl87nm';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+</body>
+</html>
